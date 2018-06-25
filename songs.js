@@ -13,8 +13,8 @@ $(document).ready(function() {
         $loadSongBtn.on("click", function (evt){
            $.ajax({
                type:"GET",
-               url: "./songs.json",
-               success: function(data){
+               url: "./songs.json"})
+               .then(function(data){
                    $.each(data.songs, function(i, song){
                        const $songSec = $("<section></section>").attr("class", "song")
                        $songList.append($songSec)
@@ -22,8 +22,7 @@ $(document).ready(function() {
                     const $songDesc = $("<section>Performed by "+ song.artist+" on the album "+song.album+"</section>").attr("class", "song_description")
                     $songSec.append($songDesc)
                    })
-               }
-            })
+               })
         })
        
         // Chain a `.then()` method to the ajax call, and when
